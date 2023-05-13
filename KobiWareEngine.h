@@ -14,11 +14,39 @@ typedef struct
 } ScreenValues;
 ScreenValues screenValues;
 
+typedef struct{
+    int xIncr, yIncr;
+} InputIncrements;
+InputIncrements inptIncr;
+
 typedef struct
 {
     int w, a, s, d;
 } _Input2D;
 _Input2D input;
+
+void inputCase(int xIncr, int yIncr){
+    if (input.w == 1)
+    {
+        py -= yIncr;
+    }
+    if (input.s == 1)
+    {
+        py += yIncr;
+    }
+    if (input.a == 1)
+    {
+        px -= xIncr;
+    }
+    if (input.d == 1)
+    {
+        px += xIncr;
+    }
+}
+
+void clear(){
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
 
 bool inRange(unsigned low, unsigned high, unsigned x)
 {
@@ -48,27 +76,22 @@ void input2DDown(unsigned char key, int x, int y)
     if (key == 'a')
     {
         input.a = 1;
-        std::cout << "\nA Pressed";
     }
     if (key == 'd')
     {
         input.d = 1;
-        std::cout << "\nD Pressed";
     }
     if (key == 'w')
     {
         input.w = 1;
-        std::cout << "\nW Pressed";
     }
     if (key == 's')
     {
         input.s = 1;
-        std::cout << "\nS Pressed";
     }
     if (key == 27)
     {
         glutDestroyWindow(1);
-        std::cout << "\nQuitting game";
     }
     glutPostRedisplay();
 }
@@ -78,22 +101,18 @@ void input2DUp(unsigned char key, int x, int y)
     if (key == 'a')
     {
         input.a = 0;
-        std::cout << "\nA released";
     }
     if (key == 'd')
     {
         input.d = 0;
-        std::cout << "\nD released";
     }
     if (key == 'w')
     {
         input.w = 0;
-        std::cout << "\nW released";
     }
     if (key == 's')
     {
         input.s = 0;
-        std::cout << "\nS released";
     }
     if (key == 27)
     {
@@ -113,6 +132,23 @@ void display2D()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glutSwapBuffers();
+
+    if (input.w == 1)
+    {
+        py -= 5;
+    }
+    if (input.s == 1)
+    {
+        py += 5;
+    }
+    if (input.a == 1)
+    {
+        px -= 5;
+    }
+    if (input.d == 1)
+    {
+        px += 5;
+    }
 }
 
 void createWindow(int width, int height, char *name, int _fScreen)

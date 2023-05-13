@@ -2,69 +2,46 @@
 
 int sx = rand() % 100;
 int sy = rand() % 100;
-int snakeSize = 8;
+int snakeSize = 1;
 
 void PlaceSquareRandom()
 {
-    if ((px - sx <= 10 && px - sx >= 0) && (py - sy <= 10 && py - sy >= 0))
+    if ((px - sx <= 15 && px - sx >= 0) && (py - sy <= 15 && py - sy >= 0))
     {
         sx = rand() % 300;
         sy = rand() % 300;
 
-        glColor3f(0, 1, 1);
-        glPointSize(8);
-        glBegin(GL_POINTS);
-        glVertex2i(sx, sy);
-        glEnd();
+        drawLine(0, 1, 1, 8, sx, sy);
         glutSwapBuffers();
 
         snakeSize += 1;
+
+        std::cout << "\nSquare eaten";
     }
 }
 
 void InitialSquarePlace()
 {
-    glColor3f(0, 1, 1);
-    glPointSize(8);
-    glBegin(GL_POINTS);
-    glVertex2i(sx, sy);
-    glEnd();
+    drawLine(0, 1, 1, 8, sx, sy);
     glutSwapBuffers();
 }
 
 void _drawPlayer2D()
 {
-    glColor3f(1, 1, 0);
-    glPointSize(snakeSize);
-    glBegin(GL_POINTS);
-    glVertex2i(px, py);
-    glEnd();
+    for (int i = 1; i <= snakeSize; i++){
+        drawLine(1, 1, 0, 8, px + i, py);
+    }
 }
 
 void _display2D()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    clear();
     _drawPlayer2D();
     PlaceSquareRandom();
     InitialSquarePlace();
     glutSwapBuffers();
 
-    if (input.w == 1)
-    {
-        py -= 5;
-    }
-    if (input.s == 1)
-    {
-        py += 5;
-    }
-    if (input.a == 1)
-    {
-        px -= 5;
-    }
-    if (input.d == 1)
-    {
-        px += 5;
-    }
+    inputCase(15, 15);
 }
 
 int main(int argc, char *argv[])
