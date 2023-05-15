@@ -5,7 +5,7 @@ There is not much to the KobiWare Engine at the moment and it is mostly useless,
 Current functions of the KobiWare Engine Include:  
   -createWindow(int width, int height, char* name, int fScreen)  
   -drawLine(int r, int g, int b, int size, int x, int y)  
-  -clear
+  -clear  
   -inputCase(int xIncr, int yIncr)
    
 # Example Usage  
