@@ -1,2 +1,2 @@
-g++ Main.cpp -o ./build/"Snake" -lGL -lGLU -lglut -lm
+g++ Game.cpp -o ./build/"Snake" -lGL -lGLU -lglut -lm
 exec ./build/"Snake"
