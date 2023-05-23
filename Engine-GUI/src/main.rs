@@ -7,7 +7,7 @@ use druid::{AppLauncher, EventCtx, LocalizedString, PlatformError, Widget, Widge
 fn main() -> Result<(), PlatformError> {
     let main_window = WindowDesc::new(ui_builder())
         .window_size((600.0, 400.0))
-        .title("KobiWare Engine Install");
+        .title("KobiWare Engine Install Manager");
     let data = 0_u32;
     AppLauncher::with_window(main_window)
         .log_to_console()
@@ -16,7 +16,8 @@ fn main() -> Result<(), PlatformError> {
 
 fn ui_builder() -> impl Widget<u32> {
     // The label text will be computed dynamically based on the current locale and count
-    let installText = LocalizedString::new("Press the button to install the KobiWare Engine");
+    let installText =
+        LocalizedString::new("Use the buttons to install and/or update the KobiWare Engine");
     let installLabel = Label::new(installText).padding(5.0).center();
 
     let debianButton: Padding<u32, ControllerHost<Button<u32>, druid::widget::Click<u32>>> =
