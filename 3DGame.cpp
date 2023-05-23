@@ -1,4 +1,4 @@
-#include "Engine/KobiWare.3D.h"
+#include <KobiWare/KobiWare.3D.h>
 #include <KobiWare/KobiWare.Window.h>
 
 int main(int argc, char *argv[])
