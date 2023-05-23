@@ -3,7 +3,7 @@
 version = 3
 
 [[package]]
-name = "Engine-GUI"
+name = "KobiWare-Engine-GUI"
 version = "0.1.0"
 dependencies = [
  "druid",
