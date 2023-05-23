@@ -1,5 +1,5 @@
-#include "KobiWare.Input2D.h"
-#include "KobiWare.Include.h"
+#include <KobiWare/KobiWare.Input2D.h>
+#include <KobiWare/KobiWare.Include.h>
 
 typedef struct
 {
