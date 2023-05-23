@@ -1,8 +1,7 @@
-#include "Engine/KobiWareEngine.h"
-#include "Engine/KobiWare.System.h"
-#include "Engine/KobiWare.Math.h"
-#include "Engine/KobiWare.Window.h"
-#include "Engine/KobiWare.2DSystem.h"
+#include <KobiWare/KobiWare.System.h>
+#include <KobiWare/KobiWare.Math.h>
+#include <KobiWare/KobiWare.Window.h>
+#include <KobiWare/KobiWare.2DSystem.h>
 
 int sx = rand() % 100;
 int sy = rand() % 100;
