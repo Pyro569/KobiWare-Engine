@@ -1,8 +1,8 @@
 //rust imports
 
 //druid gui system imports
-use druid::widget::{Button, Flex, Label};
-use druid::{AppLauncher, LocalizedString, PlatformError, Widget, WidgetExt, WindowDesc};
+use druid::widget::{Button, ControllerHost, Flex, Label, Padding};
+use druid::{AppLauncher, EventCtx, LocalizedString, PlatformError, Widget, WidgetExt, WindowDesc};
 
 fn main() -> Result<(), PlatformError> {
     let main_window = WindowDesc::new(ui_builder())
@@ -16,13 +16,33 @@ fn main() -> Result<(), PlatformError> {
 
 fn ui_builder() -> impl Widget<u32> {
     // The label text will be computed dynamically based on the current locale and count
-    let text = LocalizedString::new("Press the button to install the KobiWare Engine");
-    let label = Label::new(text).padding(5.0).center();
-    let button = Button::new("Install Engine (Debian)")
-        .on_click(|_ctx, data, _env| install_debian())
-        .padding(5.0);
+    let installText = LocalizedString::new("Press the button to install the KobiWare Engine");
+    let installLabel = Label::new(installText).padding(5.0).center();
 
-    Flex::column().with_child(label).with_child(button)
+    let debianButton: Padding<u32, ControllerHost<Button<u32>, druid::widget::Click<u32>>> =
+        Button::new("Install Engine (Debian)")
+            .on_click(|_ctx, data, _env| install_debian())
+            .padding(5.0);
+    let updateDebian: Padding<u32, ControllerHost<Button<u32>, druid::widget::Click<u32>>> =
+        Button::new("Update Engine (Debian)")
+            .on_click(|_ctx, data, _env| update_debian())
+            .padding(10.0);
+    Flex::column()
+        .with_child(installLabel)
+        .with_child(debianButton)
+        .with_child(updateDebian)
+}
+
+fn update_debian() {
+    let (code, output, error) = run_script::run_script!(
+        r#"gnome-terminal -- /bin/sh -c '
+        sudo rm -r /usr/include/KobiWare
+        sudo git clone https://github.com/Pyro569/KobiWare-Engine-Plus-Plus /home/KobiWare
+        sudo mv -v /home/KobiWare/Engine/ /home/KobiWare/KobiWare
+        sudo mv /home/KobiWare/KobiWare /usr/include/KobiWare
+        sudo rm -r /home/KobiWare; sleep 10; exec bash'"#
+    )
+    .unwrap();
 }
 
 fn install_debian() {
@@ -129,7 +149,7 @@ else
     sudo rm -r /home/KobiWare
 fi
 
-exit; echo KobiWare Engine Installed;'"#
+exit; echo KobiWare Engine Installed; exec bash'"#
     )
     .unwrap();
 }
