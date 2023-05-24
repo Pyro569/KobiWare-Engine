@@ -56,3 +56,14 @@ void createWindow(int width, int height, char *name, int _fScreen)
         std::cout << "\nNon-fullscreen";
     }
 }
+
+void winInitSize(int width, int height)
+{
+    glutInitWindowSize(width, height);
+}
+
+void getScreen(int width, int height)
+{
+    width = glutGet(GLUT_SCREEN_WIDTH);
+    height = glutGet(GLUT_SCREEN_HEIGHT);
+}

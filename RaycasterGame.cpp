@@ -3,12 +3,11 @@
 
 int main(int argc, char *argv[])
 {
-    createWindow(800, 600, "Raycaster", 0);
-    px = 300;
-    py = 300;
-    pdx = cos(pa) * 5;
-    pdy = sin(pa) * 5;
+    int screenWidth = glutGet(GLUT_SCREEN_WIDTH);
+    int screenHeight = glutGet(GLUT_SCREEN_HEIGHT);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+    createWindow(screenWidth, screenHeight);
+    winInitSize(screenWidth, screenHeight);
     glutDisplayFunc(raycast);
     glutKeyboardFunc(_buttons);
-    displayLoop();
 }

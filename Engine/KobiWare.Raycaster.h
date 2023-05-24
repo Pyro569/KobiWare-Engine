@@ -1,5 +1,4 @@
 #include <KobiWare/KobiWare.Include.h>
-#include <math.h>
 
 #define PI 3.1415926535
 #define P2 PI / 2
@@ -8,7 +7,7 @@
 
 float px, py, pdx, pdy, pa; // player xy, player delta xy, player angle
 
-void _drawPlayer()
+void drawPlayer()
 {
     glColor3f(1, 1, 0);
     glPointSize(8);
@@ -91,7 +90,7 @@ int map[] = {
     1,
 };
 
-void _drawMap2D()
+void drawMap2D()
 {
     int x, y, xo, yo;
     for (y = 0; y < mapY; y++)
@@ -123,7 +122,7 @@ float dist(float ax, float ay, float bx, float by, float ang)
     return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay))); // calculate the distance
 }
 
-void _drawRays2D()
+void drawRays2D()
 {
     int r, mx, my, mp, dof;
     float rx, ry, ra, xo, yo, disT;
@@ -282,9 +281,9 @@ void _drawRays2D()
 void raycast()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    _drawMap2D();
-    _drawPlayer();
-    _drawRays2D();
+    drawMap2D();
+    drawPlayer();
+    drawRays2D();
     glutSwapBuffers();
 }
 
@@ -321,4 +320,30 @@ void _buttons(unsigned char key, int x, int y)
         py -= pdy;
     }
     glutPostRedisplay();
+}
+
+void init()
+{
+    glClearColor(0.3, 0.3, 0.3, 0);
+    gluOrtho2D(0, 1024, 512, 0);
+    px = 300;
+    py = 300;
+    pdx = cos(pa) * 5;
+    pdy = sin(pa) * 5;
+}
+
+void raycastRender()
+{
+    int argc = 1;
+    char *argv[1] = {(char *)"Something"};
+    glutInit(&argc, argv);
+    int screenWidth = glutGet(GLUT_SCREEN_WIDTH);
+    int screenHeight = glutGet(GLUT_SCREEN_HEIGHT);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+    glutInitWindowSize(screenWidth, screenHeight);
+    glutCreateWindow("KobiWare 2.5D Engine");
+    init();
+    glutDisplayFunc(display);
+    glutKeyboardFunc(buttons);
+    glutMainLoop();
 }
