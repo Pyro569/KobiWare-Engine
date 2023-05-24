@@ -22,11 +22,6 @@ void clear()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void init()
-{
-    glClearColor(0.3, 0.3, 0.3, 0);
-}
-
 void display2D()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -45,7 +40,7 @@ void createWindow(int width, int height, char *name, int _fScreen)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(width, height);
     glutCreateWindow(name);
-    init();
+    glClearColor(0.3, 0.3, 0.3, 0);
     if (_fScreen == 1)
     {
         glutFullScreen();
