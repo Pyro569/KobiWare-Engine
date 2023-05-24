@@ -331,19 +331,3 @@ void init()
     pdx = cos(pa) * 5;
     pdy = sin(pa) * 5;
 }
-
-void raycastRender()
-{
-    int argc = 1;
-    char *argv[1] = {(char *)"Something"};
-    glutInit(&argc, argv);
-    int screenWidth = glutGet(GLUT_SCREEN_WIDTH);
-    int screenHeight = glutGet(GLUT_SCREEN_HEIGHT);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowSize(screenWidth, screenHeight);
-    glutCreateWindow("KobiWare 2.5D Engine");
-    init();
-    glutDisplayFunc(display);
-    glutKeyboardFunc(buttons);
-    glutMainLoop();
-}
