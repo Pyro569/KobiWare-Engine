@@ -1,4 +1,3 @@
-#include <KobiWare/KobiWare.Input2D.h>
 #include <KobiWare/KobiWare.Include.h>
 
 typedef struct
@@ -57,6 +56,4 @@ void createWindow(int width, int height, char *name, int _fScreen)
     {
         std::cout << "\nNon-fullscreen";
     }
-    glutKeyboardFunc(input2DDown);
-    glutKeyboardUpFunc(input2DUp);
 }

@@ -1,6 +1,6 @@
 #include <KobiWare/KobiWare.Include.h>
 
-int px, py;
+float px, py;
 
 typedef struct
 {
