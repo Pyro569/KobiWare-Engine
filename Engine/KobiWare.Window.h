@@ -25,7 +25,6 @@ void clear()
 void init()
 {
     glClearColor(0.3, 0.3, 0.3, 0);
-    gluOrtho2D(0, 800, 600, 0);
 }
 
 void display2D()
