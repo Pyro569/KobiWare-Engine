@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 druid = "0.8.3"
-run_script = "0.1.0"
+run_script = "0.10.1"
